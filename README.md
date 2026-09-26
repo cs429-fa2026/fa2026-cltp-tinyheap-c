@@ -13,14 +13,14 @@ Note: SSHing and opening this repo via VS Code or another GUI is acceptable prov
 
 # What this repo contains:
 
-  * `main.c`, which reads commands, and `tinyheap.c` with `tinyheap.h`, which implement and declare the heap operations.
+  * `tinyheap.c` and its corresponding header file, and precompiled .o files in `bin/`.
+  * A reference executable named `ref_tinyheap`.
   * A Makefile
-  * Some testcases and expected outputs in the `testcases` folder
-  * `DELETE_REPO`, a script to clean up this local repository after you commit and push your work
+  * Some testcases in the `testcases` folder
 
 # What this code does:
 
-The given code reads lines of the format `<ACTION> <argument>` in `tinyheap.c`. It models a heap containing 8 slots, each holding 4 bytes. `ALLOC <bytes>` reserves contiguous slots using first-fit, `FREE <start>` frees an allocation, and `STATUS` reports the number of used and free slots. Allocation sizes round up to whole slots. The implementation may not be correct, and it is up to you to fix it. The expected outputs are in the `testcases` folder.
+The given code takes in an arbitrary number of lines of the format `<ACTION> <argument>`. The command driver parses each line; the implementation in `tinyheap.c` is responsible for the heap behavior and may not be correct. It models a heap with 8 slots, each holding 4 bytes. `ALLOC <bytes>` reserves contiguous slots, `FREE <start>` releases an allocation, and `STATUS` reports the number of used and free slots. The object files in `bin/` and the reference executable are functional.
 
 # Instructions:
 
@@ -28,7 +28,7 @@ The given code reads lines of the format `<ACTION> <argument>` in `tinyheap.c`. 
 2. Clone this repository
 3. Read then use the Makefile
 4. Debug the test cases using gdb; you must use gdb to pass this assessment.
-5. To the best of your ability, ensure your output matches the expected output exactly.
+5. To the best of your ability, ensure your output matches the reference exactly.
 6. Write the outputs of the `history` command to a file in this repo called `shell_logs.txt`
 7. Commit and push your changes. Do not forget to add `shell_logs.txt` to git.
 8. Run `./DELETE_REPO` to clean up the repository (or simply delete the repository directory yourself manually via the command line). Note this does not commit nor push your changes to any remote.
