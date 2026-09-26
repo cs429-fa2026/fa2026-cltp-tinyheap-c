@@ -14,19 +14,13 @@ Allocation sizes round up to the next whole slot. For example, `ALLOC 5` reserve
 
 ## Work in the terminal
 
-Complete Git, GDB, and filesystem actions from the command line. Build and run the program on your assigned UTCS Linux machine:
+Complete Git, GDB, and filesystem actions from the command line. Build and run the tests on your assigned UTCS Linux machine:
 
 ```sh
 make
-./tinyheap < testcases/basic.in
+make check
 ```
 
-Compare the output with `testcases/basic.expected`:
-
-```sh
-./tinyheap < testcases/basic.in | diff -u testcases/basic.expected -
-```
-
-Use GDB to investigate the incorrect behavior. Save the output of your shell's `history` command to `shell_logs.txt`, then commit and push your changes.
+Use GDB to investigate the behavior that does not match the specification, fix the implementation, and rerun `make check`. Save the output of your shell's `history` command to `shell_logs.txt`, then commit and push your changes.
 
 The project uses standard C and builds from source on the target Linux machine. No prebuilt executable is required.
