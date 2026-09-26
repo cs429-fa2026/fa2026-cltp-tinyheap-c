@@ -1,15 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#define SLOT_COUNT 8
-#define SLOT_BYTES 4
-#define INPUT_SIZE 128
+#include "tinyheap.h"
 
 static int owner[SLOT_COUNT];
 static int allocation_length[SLOT_COUNT];
 static int free_slots;
 
-static void initialize_heap(void)
+void tinyheap_initialize(void)
 {
     for (int i = 0; i < SLOT_COUNT; ++i) {
         owner[i] = -1;
@@ -24,7 +22,7 @@ static int slots_needed(int bytes)
     return needed > 0 ? needed : 1;
 }
 
-static void allocate_bytes(int bytes)
+void tinyheap_allocate(int bytes)
 {
     if (bytes <= 0 || bytes > SLOT_COUNT * SLOT_BYTES) {
         puts("ERROR");
@@ -60,7 +58,7 @@ static void allocate_bytes(int bytes)
     printf("start=%d\n", start);
 }
 
-static void free_allocation(int start)
+void tinyheap_free(int start)
 {
     if (start < 0 || start >= SLOT_COUNT || allocation_length[start] <= 0) {
         puts("ERROR");
@@ -76,10 +74,15 @@ static void free_allocation(int start)
     puts("freed");
 }
 
+void tinyheap_status(void)
+{
+    printf("used=%d free=%d\n", SLOT_COUNT - free_slots, free_slots);
+}
+
 int main(void)
 {
     char line[INPUT_SIZE];
-    initialize_heap();
+    tinyheap_initialize();
 
     while (fgets(line, sizeof(line), stdin) != NULL) {
         char command[16];
@@ -87,11 +90,11 @@ int main(void)
         int fields = sscanf(line, "%15s %d", command, &argument);
 
         if (fields == 1 && strcmp(command, "STATUS") == 0) {
-            printf("used=%d free=%d\n", SLOT_COUNT - free_slots, free_slots);
+            tinyheap_status();
         } else if (fields == 2 && strcmp(command, "ALLOC") == 0) {
-            allocate_bytes(argument);
+            tinyheap_allocate(argument);
         } else if (fields == 2 && strcmp(command, "FREE") == 0) {
-            free_allocation(argument);
+            tinyheap_free(argument);
         } else {
             puts("ERROR");
         }
