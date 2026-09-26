@@ -13,7 +13,7 @@ Note: SSHing and opening this repo via VS Code or another GUI is acceptable prov
 
 # What this repo contains:
 
-  * `tinyheap.c` and `tinyheap.h`, which implement and declare a small fixed-size heap model.
+  * `main.c`, which reads commands, and `tinyheap.c` with `tinyheap.h`, which implement and declare the heap operations.
   * A Makefile
   * Some testcases and expected outputs in the `testcases` folder
   * `DELETE_REPO`, a script to clean up this local repository after you commit and push your work

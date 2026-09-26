@@ -1,3 +1,5 @@
 tinyheap
 *.o
 *.dSYM/
+bin/
+outputs/
