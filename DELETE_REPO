@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Deletes everything in the current directory except this script and .env.
+
+echo "Deleting local files..."
+SELF="$(basename "$0")"
+shopt -s dotglob nullglob
+for item in *; do
+  if [[ "$item" == "$SELF" || "$item" == ".env" ]]; then
+    continue
+  fi
+  rm -rf -- "$item"
+done
+shopt -u dotglob nullglob
+echo "All files removed (except $SELF and .env)."

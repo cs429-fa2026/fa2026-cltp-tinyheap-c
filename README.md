@@ -1,26 +1,34 @@
-# Tiny Heap CLTP
+# cs429-mastery-assignment
 
-## Task
+# Please uninstall all AI tooling before beginning.
 
-Debug `tinyheap.c` so its allocation commands follow the behavior below. Use GDB to investigate the failing behavior, then rebuild with `make`.
+## [IMPORTANT] After you SSH into a lab machine: Note that
 
-The program models a heap of 8 slots. Each slot holds 4 bytes. It reads one command per line from standard input:
+  * ALL git commands must be in the command line.
+  * ALL gdb debugging must be in the command line.
+  * ALL file system actions (eg. creating a file, navigating a file, etc) must be in the command line
 
-- `ALLOC <bytes>` reserves the smallest number of contiguous slots needed, using first-fit. It prints `start=<slot>` on success, `FULL` if no contiguous space is available, and `ERROR` for a nonpositive or oversized request.
-- `FREE <start>` frees the allocation that begins at that slot and prints `freed`. Invalid or already-freed starts print `ERROR`.
-- `STATUS` prints `used=<slots> free=<slots>`.
+You are allowed to utilize the terminal of your choice for these actions, but they must be accomplished in-terminal.
+Note: SSHing and opening this repo via VS Code or another GUI is acceptable provided that the above actions are then accomplished via a terminal therein.
 
-Allocation sizes round up to the next whole slot. For example, `ALLOC 5` reserves two slots.
+# What this repo contains:
 
-## Work in the terminal
+  * `tinyheap.c`, which implements a small fixed-size heap model.
+  * A Makefile
+  * Some testcases and expected outputs in the `testcases` folder
+  * `DELETE_REPO`, a script to clean up this local repository after you commit and push your work
 
-Complete Git, GDB, and filesystem actions from the command line. Build and run the tests on your assigned UTCS Linux machine:
+# What this code does:
 
-```sh
-make
-make check
-```
+The given code reads lines of the format `<ACTION> <argument>` in `tinyheap.c`. It models a heap containing 8 slots, each holding 4 bytes. `ALLOC <bytes>` reserves contiguous slots using first-fit, `FREE <start>` frees an allocation, and `STATUS` reports the number of used and free slots. Allocation sizes round up to whole slots. The implementation may not be correct, and it is up to you to fix it. The expected outputs are in the `testcases` folder.
 
-Use GDB to investigate the behavior that does not match the specification, fix the implementation, and rerun `make check`. Save the output of your shell's `history` command to `shell_logs.txt`, then commit and push your changes.
+# Instructions:
 
-The project uses standard C and builds from source on the target Linux machine. No prebuilt executable is required.
+1. ssh into your favorite UTCS lab machine
+2. Clone this repository
+3. Read then use the Makefile
+4. Debug the test cases using gdb; you must use gdb to pass this assessment.
+5. To the best of your ability, ensure your output matches the expected output exactly.
+6. Write the outputs of the `history` command to a file in this repo called `shell_logs.txt`
+7. Commit and push your changes. Do not forget to add `shell_logs.txt` to git.
+8. Run `./DELETE_REPO` to clean up the repository (or simply delete the repository directory yourself manually via the command line). Note this does not commit nor push your changes to any remote.
