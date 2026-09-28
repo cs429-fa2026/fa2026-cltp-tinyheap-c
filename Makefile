@@ -10,7 +10,7 @@ BIN_DIR = bin
 # Source and object files
 SRC = tinyheap.c
 READABLE_OBJ = $(BIN_DIR)/tinyheap.o
-OBJ = $(BIN_DIR)/main.o $(BIN_DIR)/parser.o
+OBJ = $(BIN_DIR)/usage.o $(BIN_DIR)/main.o $(BIN_DIR)/parser.o
 EXEC = $(BIN_DIR)/tinyheap
 REFERENCE_EXEC = ref_tinyheap
 
