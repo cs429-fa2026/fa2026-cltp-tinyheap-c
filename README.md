@@ -22,6 +22,8 @@ Note: SSHing and opening this repo via VS Code or another GUI is acceptable prov
 
 The given code takes in an arbitrary number of lines of the format `<ACTION> <argument>`. The command driver parses each line; the implementation in `tinyheap.c` is responsible for the heap behavior and may not be correct. It models a heap with 8 slots, each holding 4 bytes. `ALLOC <bytes>` reserves contiguous slots, `FREE <start>` releases an allocation, and `STATUS` reports the number of used and free slots. The object files in `bin/` and the reference executable are functional.
 
+Running `./ref_tinyheap` or `./bin/tinyheap` without options in a terminal starts interactive mode. The program prints `Enter commands:` and shows `TH>` before each command. Try `STATUS`, `ALLOC <bytes>`, or `FREE <start>`; press Ctrl-D to finish. Use `-i <file>` to process commands from a file.
+
 # Instructions:
 
 1. ssh into your favorite UTCS lab machine

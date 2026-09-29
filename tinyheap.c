@@ -3,10 +3,12 @@
 
 #include "tinyheap.h"
 
+/* The heap is tracked one fixed-size slot at a time. */
 static int owner[SLOT_COUNT];
 static int allocation_length[SLOT_COUNT];
 static int free_slots;
 
+/* Reset heap bookkeeping before processing a new command stream. */
 void tinyheap_initialize(void)
 {
     for (int i = 0; i < SLOT_COUNT; ++i) {
@@ -22,6 +24,7 @@ static int slots_needed(int bytes)
     return needed > 0 ? needed : 1;
 }
 
+/* Reserve slots for a byte request and report the starting slot. */
 void tinyheap_allocate(int bytes)
 {
     if (bytes <= 0 || bytes > SLOT_COUNT * SLOT_BYTES) {
@@ -58,6 +61,7 @@ void tinyheap_allocate(int bytes)
     printf("start=%d\n", start);
 }
 
+/* Release the allocation that begins at the requested slot. */
 void tinyheap_free(int start)
 {
     if (start < 0 || start >= SLOT_COUNT || allocation_length[start] <= 0) {
@@ -74,6 +78,7 @@ void tinyheap_free(int start)
     puts("freed");
 }
 
+/* Report heap occupancy as used and free slot counts. */
 void tinyheap_status(void)
 {
     printf("used=%d free=%d\n", SLOT_COUNT - free_slots, free_slots);
