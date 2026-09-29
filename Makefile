@@ -30,9 +30,11 @@ $(BIN_DIR):
 $(BIN_DIR)/%.o: %.c | $(BIN_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Debug target (compiles with debug flags)
-debug: CFLAGS += $(DEBUG_FLAGS)
-debug: all
+# Rebuild the student code with debug symbols, even if an older object exists.
+.PHONY: debug clean
+debug:
+	$(MAKE) clean
+	$(MAKE) CFLAGS="$(CFLAGS) $(DEBUG_FLAGS)" all
 
 # Runs all test cases
 test: all
